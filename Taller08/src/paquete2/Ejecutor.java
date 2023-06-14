@@ -21,10 +21,12 @@ public class Ejecutor {
             int op = entrada.nextInt();
             switch (op) {
                 case 1:
-                    docenteNombramiento();
+                    String [] datos = docente();
+                    docenteNombramiento(datos);
                     break;
                 case 2:
-                    docenteFactura();
+                    datos = docente();
+                    docenteFactura(datos);
                     break;
                 default:
                     System.out.println("Opcion invalida");
@@ -41,30 +43,23 @@ public class Ejecutor {
 
     }
 
-    public static void docente() {
+    public static String[] docente() {
         entrada.nextLine();
-//        Docente d = new Docente();
 
+        String[] datos = new String[2];
         System.out.println("Ingrese el Nombre del Docente");
-        String nombre = entrada.nextLine();
+        datos[0] = entrada.nextLine();
 
         System.out.println("Ingrese la Cedula del Docente");
-        String cedula = entrada.nextLine();
+        datos[1] = entrada.nextLine();
 
-//        d.establecerNombre(nombre);
-//        d.establecerCedula(cedula);
-
+        return datos;
     }
 
-    public static void docenteNombramiento() {
+    public static void docenteNombramiento(String[] datos) {
 
         DocenteNombramiento docenteN = new DocenteNombramiento();
-        entrada.nextLine();
 
-        System.out.println("Ingrese el Nombre del Docente");
-        String nombre = entrada.nextLine();
-        System.out.println("Ingrese la Cedula del Docente");
-        String cedula = entrada.nextLine();
         System.out.println("Ingrese el Valor de Sueldo:");
         double valorSueldo = entrada.nextDouble();
         System.out.println("Ingrese el Valor hora Extra:");
@@ -72,8 +67,8 @@ public class Ejecutor {
         System.out.println("Ingrese el numero de horas Extras:");
         int horasExtra = entrada.nextInt();
 
-        docenteN.establecerNombre(nombre);
-        docenteN.establecerCedula(cedula);
+        docenteN.establecerNombre(datos[0]);
+        docenteN.establecerCedula(datos[1]);
         docenteN.establecerValorSueldo(valorSueldo);
         docenteN.establecerValorHExtra(valorHExtra);
         docenteN.establecerNumeroHExtra(horasExtra);
@@ -83,20 +78,14 @@ public class Ejecutor {
         System.out.println("-----------------------------");
     }
 
-    public static void docenteFactura() {
+    public static void docenteFactura(String []datos) {
 
         DocenteFactura docenteFactura = new DocenteFactura();
 
-//        entrada.nextLine();
-        docente();
-//        System.out.println("Ingrese el Nombre del Docente");
-        String nombre = entrada.nextLine();
-//        System.out.println("Ingrese la Cedula del Docente");
-        String cedula = entrada.nextLine();
         System.out.println("Ingrese el valor de factura: ");
         double valorfactura = entrada.nextDouble();
-        docenteFactura.establecerNombre(nombre);
-        docenteFactura.establecerCedula(cedula);
+        docenteFactura.establecerNombre(datos[0]);
+        docenteFactura.establecerCedula(datos[1]);
         docenteFactura.establecerValorfactura(valorfactura);
         docenteFactura.establecerIvaDescuento();
         docenteFactura.calcularValorCancelar();
